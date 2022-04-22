@@ -72,8 +72,8 @@ FROM dannys_diner.sales;
 SELECT 
   s.customer_id, 
   SUM(price) AS total_sales
-FROM dbo.sales AS s
-JOIN dbo.menu AS m
+FROM dannys_diner.sales AS s
+JOIN dannys_diner.menu AS m
   ON s.product_id = m.product_id
 GROUP BY customer_id;
 
@@ -81,7 +81,7 @@ GROUP BY customer_id;
 SELECT 
   customer_id, 
   COUNT(DISTINCT(order_date)) AS visit_count
-FROM dbo.sales
+FROM dannys_diner.sales
 GROUP BY customer_id;
 
 --3. What was the first item from the menu purchased by each customer?
@@ -92,8 +92,8 @@ WITH ordered_sales_cte AS
     order_date, 
     product_name,
 		DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date) AS rank
-	FROM dbo.sales AS s
-	JOIN dbo.menu AS m
+	FROM dannys_diner.sales AS s
+	JOIN dannys_diner.menu AS m
 		ON s.product_id = m.product_id
 )
 
@@ -108,8 +108,8 @@ GROUP BY customer_id, product_name;
 SELECT 
   TOP 1 (COUNT(s.product_id)) AS most_purchased, 
   product_name
-FROM dbo.sales AS s
-JOIN dbo.menu AS m
+FROM dannys_diner.sales AS s
+JOIN dannys_diner.menu AS m
   ON s.product_id = m.product_id
 GROUP BY s.product_id, product_name
 ORDER BY most_purchased DESC;
@@ -122,8 +122,8 @@ WITH fav_item_cte AS
     m.product_name, 
     COUNT(m.product_id) AS order_count,
 		DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY COUNT(s.customer_id) DESC) AS rank
-FROM dbo.menu AS m
-JOIN dbo.sales AS s
+FROM dannys_diner.menu AS m
+JOIN dannys_diner.sales AS s
 	ON m.product_id = s.product_id
 GROUP BY s.customer_id, m.product_name
 )
