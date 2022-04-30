@@ -291,11 +291,18 @@ LEFT JOIN members AS mm
 
 SELECT 
   *,
-	CASE WHEN member = 'N' then NULL
+CASE WHEN member = 'N' then NULL
     ELSE
-			RANK () OVER(PARTITION BY customer_id, member ORDER BY order_date) 
-		END AS ranking
+	RANK () OVER(PARTITION BY customer_id, member ORDER BY order_date) 
+    END AS ranking
 FROM summary_cte;
 
 --------------------------------
---------------------------------
+
+Suggestions for Danny-
+
+1. Customer A & B visit a lot and spend more money in the Diner.
+2. Ramen is the best-seller of all menu.
+3. Customer B loves all the food equally, A & C both love Ramen the most. A & B are loyal customers; Danny might make some discounts or give bigger servings for these customers.
+4. Customers A & B became members after they ate sushi :) Give Customer C a sushi on the house.
+5. Points system might attract customers, even new ones. Say, earning 1500 points in a month provides special discounts, gifts etc. This would lead customers to become members.
