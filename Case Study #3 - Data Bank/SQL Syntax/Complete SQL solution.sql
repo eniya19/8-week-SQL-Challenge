@@ -46,9 +46,6 @@ SELECT
   ROUND(AVG(sum_diff),0) AS avg_reallocation_days
 FROM sum_diff_cte;
 
---5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?
-
---24/08/2021: Pending. To be updated.
 
 ---------------------------------------
 --Solution for B. Customer Transactions
