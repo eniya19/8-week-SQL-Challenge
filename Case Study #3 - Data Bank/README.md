@@ -75,4 +75,3 @@ View my solution [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob
   
 ***
 
-Do give me a 🌟 if you like what you're reading. Thank you! 🙆🏻‍♀️
